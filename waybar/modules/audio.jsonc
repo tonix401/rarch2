@@ -3,7 +3,8 @@
     "orientation": "horizontal",
     "modules": [
       "pulseaudio",
-      "pulseaudio#microphone"
+      "pulseaudio#microphone",
+      "custom/brightness"
     ]
   },
   "pulseaudio": {
@@ -25,5 +26,17 @@
     "format-source-muted":  "  muted",
     "on-click": "~/.config/waybar/scripts/toggle_mute_mics.sh",
     "on-click-right": "pavucontrol"
+  },
+  "custom/brightness": {
+    "exec": "~/.config/waybar/scripts/hyprsunset_info.sh",
+    "return-type": "json",
+    "interval": "once",
+    "signal": 9,
+    "format": " {text}",
+    "on-scroll-up": "~/.config/waybar/scripts/brightness-change.sh 4",
+    "on-scroll-down": "~/.config/waybar/scripts/brightness-change.sh -4",
+    "on-scroll-right": "~/.config/waybar/scripts/temperature-change.sh 200",
+    "on-scroll-left": "~/.config/waybar/scripts/temperature-change.sh -200",
+    "on-right-click": "hyprctl hyprsunset toggle",
   }
 }

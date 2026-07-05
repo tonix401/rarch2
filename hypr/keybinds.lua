@@ -45,6 +45,9 @@ hl.bind("SUPER + ALT + S",  hl.dsp.window.move({ workspace = "special:scratchpad
 
 -- ── Media ─────────────────────────────────────────────────────────────────────
 local nextTrack = [[playerctl next || playerctl position `bc <<< "100 * $(playerctl metadata mpris:length) / 1000000 / 100"`]]
+hl.bind("XF86MonBrightnessUp", exec("~/.config/waybar/scripts/brightness-change.sh 8 && pkill -SIGRTMIN+9 waybar"),
+{ locked = true, repeating = true, desc = "Increase brightness" })
+hl.bind("XF86MonBrightnessDown", exec("~/.config/waybar/scripts/brightness-change.sh -8 && pkill -SIGRTMIN+9 waybar"), { locked = true, repeating = true, desc = "Decrease brightness" })
 hl.bind("XF86AudioNext",  exec(nextTrack),              { locked = true, desc = "Next track" })
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
